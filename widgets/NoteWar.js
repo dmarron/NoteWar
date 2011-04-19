@@ -1304,7 +1304,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 		ctx.save();
 		ctx.font = "20pt Arial";
 		ctx.fillText("Tutorial",30,30);
-		ctx.fillText("Press Enter to return to the menu",30,60);
+		ctx.fillText("Press Escape to return to the menu",30,60);
 		ctx.restore();
 	},
 	drawIntroPage: function(event) {
