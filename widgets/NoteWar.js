@@ -715,7 +715,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 							this.drawG(ctx,this.currentSlot+1,2);
 						}
 						ctx.strokeStyle = "#ffff00";
-						ctx.strokeRect(87,178,30,30);
+						ctx.strokeRect(87,188,30,30);
 						this.turn = 1;
 						this.postAnimateComputerBlock(rand,randTwo);
 					} else {
@@ -756,12 +756,12 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			var ctx = noteCanvas.getContext("2d");
 			ctx.fillStyle = "#ffffff";
 			//"erase" the previous yellow rectangle by drawing 4 white rectangles (1 white won't work)
-			ctx.fillRect(85,176,3,40);
-			ctx.fillRect(85,176,40,3);
-			ctx.fillRect(115,176,3,40);
-			ctx.fillRect(85,206,40,3);
+			ctx.fillRect(85,186,3,40);
+			ctx.fillRect(85,186,40,3);
+			ctx.fillRect(115,186,3,40);
+			ctx.fillRect(85,216,40,3);
 			ctx.strokeStyle = "#00ff00";
-			ctx.strokeRect(87,178,30,30);
+			ctx.strokeRect(87,188,30,30);
 		}
 		this.playBlock(this.blocks[this.currentSlot]);
 		//this.updateCanvas();
@@ -774,19 +774,19 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 					var ctx = noteCanvas.getContext("2d");
 					ctx.lineWidth = 1;
 					//ctx.strokeStyle = "#ffffff";
-					//ctx.strokeRect(87+150*(this.currentSlot-1),178,30,30);
+					//ctx.strokeRect(87+150*(this.currentSlot-1),188,30,30);
 					ctx.fillStyle = "#ffffff";
 					//"erase" the previous yellow rectangle by drawing 4 white rectangles (1 white won't work)
-					ctx.fillRect(85+150*(this.currentSlot-1),176,3,40);
-					ctx.fillRect(85+150*(this.currentSlot-1),176,40,3);
-					ctx.fillRect(115+150*(this.currentSlot-1),176,3,40);
-					ctx.fillRect(85+150*(this.currentSlot-1),206,40,3);
+					ctx.fillRect(85+150*(this.currentSlot-1),186,3,40);
+					ctx.fillRect(85+150*(this.currentSlot-1),186,40,3);
+					ctx.fillRect(115+150*(this.currentSlot-1),186,3,40);
+					ctx.fillRect(85+150*(this.currentSlot-1),216,40,3);
 					if (this.currentSlot == this.animateFinalSlot) {
 						ctx.strokeStyle = "#00ff00";
 					} else {
 						ctx.strokeStyle = "#ffff00";
 					}
-					ctx.strokeRect(87+150*this.currentSlot,178,30,30);
+					ctx.strokeRect(87+150*this.currentSlot,188,30,30);
 					this.playBlock(this.blocks[this.currentSlot]);
 					//update canvas will cause aggravating flashing
 					//this.updateCanvas();
@@ -800,12 +800,12 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 						ctx.save();
 						ctx.font = "16pt Arial";
 						ctx.fillStyle = "#fff";
-						ctx.fillRect(88+this.currentSlot*150,179,27,27);
+						ctx.fillRect(88+this.currentSlot*150,189,27,27);
 						ctx.fillStyle = "#000";
 						if (this.animateFinalValue > 0) {
-							ctx.fillText("+" + this.animateFinalValue, 91+this.currentSlot*150, 200);
+							ctx.fillText("+" + this.animateFinalValue, 91+this.currentSlot*150, 210);
 						} else {
-							ctx.fillText(this.animateFinalValue, 91+this.currentSlot*150, 200);
+							ctx.fillText(this.animateFinalValue, 91+this.currentSlot*150, 210);
 						}
 						ctx.restore();
 					} else {
@@ -883,56 +883,57 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 		ctx.fillStyle = "#fff";
 		ctx.fillRect(0,0,noteCanvas.width,noteCanvas.height);
 		ctx.fillStyle = "#000";
+		ctx.font = "12pt Arial";
 		if (this.turn == 1) {
-			ctx.fillText("Player 1's turn", 10, 10);
+			ctx.fillText("Player 1's turn", 10, 15);
 		} else {
 			if (this.gameMode != "1player") {
-				ctx.fillText("Player 2's turn", 10, 10);
+				ctx.fillText("Player 2's turn", 10, 15);
 			} else {
-				ctx.fillText("Computer's turn", 10, 10);
+				ctx.fillText("Computer's turn", 10, 15);
 			}
 		}
 		if (this.select == "note") {
 			if (this.mode == "select") {
-				ctx.fillText("Choose a note with left and right and press enter to change it", 10, 20);
+				ctx.fillText("Choose a note with left and right and press enter to change it", 10, 30);
 				ctx.strokeStyle = "#ffff00";
 			} else if (this.mode == "change") {
-				ctx.fillText("Press up and down to change the note and press enter to confirm or escape to cancel",10,20);
+				ctx.fillText("Press up and down to change the note and press enter to confirm or escape to cancel",10,30);
 				ctx.strokeStyle = "#00ff00";
 			}
 			if (this.graphicsMode == "letters") {
 				ctx.strokeRect(25+20*this.currentSlot,40 + this.currentRow*20,18,16);
 			} else {
 				if (this.currentRow == 1) {
-					ctx.strokeRect(87+150*this.currentSlot,178,30,30);
+					ctx.strokeRect(87+150*this.currentSlot,188,30,30);
 				}
 			}
 		} else if (this.select == "block") {
 			if (this.mode == "select") {
-				ctx.fillText("Choose a slot and press enter to play a note shifter", 10, 20);
+				ctx.fillText("Choose a slot with left and right and press enter to play a note shifter", 10, 30);
 				ctx.strokeStyle = "#ffff00";
 			} else if (this.mode == "change") {
-				ctx.fillText("Press up and down to change the value and press enter to confirm or escape to cancel", 10, 20);
+				ctx.fillText("Press up and down to change the value and press enter to confirm or escape to cancel", 10, 30);
 				ctx.strokeStyle = "#00ff00";
 			}
 			if (this.graphicsMode == "letters") {
 				ctx.strokeRect(25+20*this.currentSlot,40 + this.currentRow*20,18,16);
 			} else {
 				if (this.currentRow == 1) {
-					ctx.strokeRect(87+150*this.currentSlot,178,30,30);
+					ctx.strokeRect(87+150*this.currentSlot,188,30,30);
 				}
 			}
 		} else if (this.select == "1") {
 			if (this.gameMode == "practice") {
-				ctx.fillText("You won the game in " + this.numberOfMoves + " moves.  Press Enter to restart practice mode or Escape to go back to the main menu", 10, 20);
+				ctx.fillText("You won the game in " + this.numberOfMoves + " moves.  Press Enter to restart practice mode or Escape to go back to the main menu", 10, 30);
 				if (this.recordMoves == 0 || this.recordMoves > this.numberOfMoves) {
 					this.recordMoves = this.numberOfMoves;
 				}
 			} else {
-				ctx.fillText("Player 1 has won the game.  Press Enter to start a new game and Escape to go back to the main menu", 10, 20);
+				ctx.fillText("Player 1 has won the game.  Press Enter to start a new game and Escape to go back to the main menu", 10, 30);
 			}
 		} else if (this.select == "2") {
-			ctx.fillText("Player 2 has won the game.  Press Enter to start a new game and Escape to go back to the main menu", 10, 20);
+			ctx.fillText("Player 2 has won the game.  Press Enter to start a new game and Escape to go back to the main menu", 10, 30);
 		}
 
 		for (i = 0; i < this.playerOneNotes.length; i++) {
@@ -1039,7 +1040,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 		} else {
 			ctx.save();
 			ctx.font = "16pt Arial";
-			ctx.fillText(value, 91+slot*150, 200);
+			ctx.fillText(value, 91+slot*150, 210);
 			ctx.restore();
 		}
 	},
@@ -1053,19 +1054,19 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			}
 			if (slot == this.currentSlot && player == 1 && this.currentRow == 0) {
 				if (this.mode == "select") {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/cnoteyellow.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/cnoteyellow.jpg",ctx);
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/cnotegreen.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/cnotegreen.jpg",ctx);
 				}
 			} else {
 				if (slot == this.currentSlot && player == 2 && this.currentRow == 2) {
 					if (this.mode == "select") {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/cnoteyellow.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/cnoteyellow.jpg",ctx);
 					} else {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/cnotegreen.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/cnotegreen.jpg",ctx);
 					}
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/cnote.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/cnote.jpg",ctx);
 				}
 			}
 		}
@@ -1080,19 +1081,19 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			}
 			if (slot == this.currentSlot && player == 1 && this.currentRow == 0) {
 				if (this.mode == "select") {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/dnoteyellow.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/dnoteyellow.jpg",ctx);
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/dnotegreen.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/dnotegreen.jpg",ctx);
 				}
 			} else {
 				if (slot == this.currentSlot && player == 2 && this.currentRow == 2) {
 					if (this.mode == "select") {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/dnoteyellow.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/dnoteyellow.jpg",ctx);
 					} else {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/dnotegreen.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/dnotegreen.jpg",ctx);
 					}
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/dnote.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/dnote.jpg",ctx);
 				}
 			}
 		}
@@ -1107,19 +1108,19 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			}
 			if (slot == this.currentSlot && player == 1 && this.currentRow == 0) {
 				if (this.mode == "select") {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/enoteyellow.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/enoteyellow.jpg",ctx);
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/enotegreen.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/enotegreen.jpg",ctx);
 				}
 			} else {
 				if (slot == this.currentSlot && player == 2 && this.currentRow == 2) {
 					if (this.mode == "select") {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/enoteyellow.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/enoteyellow.jpg",ctx);
 					} else {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/enotegreen.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/enotegreen.jpg",ctx);
 					}
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/enote.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/enote.jpg",ctx);
 				}
 			}
 		}
@@ -1134,19 +1135,19 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			}
 			if (slot == this.currentSlot && player == 1 && this.currentRow == 0) {
 				if (this.mode == "select") {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/fnoteyellow.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/fnoteyellow.jpg",ctx);
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/fnotegreen.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/fnotegreen.jpg",ctx);
 				}
 			} else {
 				if (slot == this.currentSlot && player == 2 && this.currentRow == 2) {
 					if (this.mode == "select") {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/fnoteyellow.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/fnoteyellow.jpg",ctx);
 					} else {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/fnotegreen.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/fnotegreen.jpg",ctx);
 					}
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/fnote.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/fnote.jpg",ctx);
 				}
 			}
 		}
@@ -1161,19 +1162,19 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			}
 			if (slot == this.currentSlot && player == 1 && this.currentRow == 0) {
 				if (this.mode == "select") {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/gnoteyellow.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/gnoteyellow.jpg",ctx);
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/gnotegreen.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/gnotegreen.jpg",ctx);
 				}
 			} else {
 				if (slot == this.currentSlot && player == 2 && this.currentRow == 2) {
 					if (this.mode == "select") {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/gnoteyellow.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/gnoteyellow.jpg",ctx);
 					} else {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/gnotegreen.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/gnotegreen.jpg",ctx);
 					}
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/gnote.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/gnote.jpg",ctx);
 				}
 			}
 		}
@@ -1185,19 +1186,19 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			var opacity = 0.1;
 			if (slot == this.currentSlot && player == 1 && this.currentRow == 0) {
 				if (this.mode == "select") {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/cnoteyellow.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/cnoteyellow.jpg",ctx);
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/cnotegreen.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/cnotegreen.jpg",ctx);
 				}
 			} else {
 				if (slot == this.currentSlot && player == 2 && this.currentRow == 2) {
 					if (this.mode == "select") {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/cnoteyellow.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/cnoteyellow.jpg",ctx);
 					} else {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/cnotegreen.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/cnotegreen.jpg",ctx);
 					}
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/cnote.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/cnote.jpg",ctx);
 				}
 			}
 		}
@@ -1209,19 +1210,19 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			var opacity = 0.1;
 			if (slot == this.currentSlot && player == 1 && this.currentRow == 0) {
 				if (this.mode == "select") {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/dnoteyellow.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/dnoteyellow.jpg",ctx);
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/dnotegreen.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/dnotegreen.jpg",ctx);
 				}
 			} else {
 				if (slot == this.currentSlot && player == 2 && this.currentRow == 2) {
 					if (this.mode == "select") {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/dnoteyellow.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/dnoteyellow.jpg",ctx);
 					} else {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/dnotegreen.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/dnotegreen.jpg",ctx);
 					}
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/dnote.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/dnote.jpg",ctx);
 				}
 			}
 		}
@@ -1233,19 +1234,19 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			var opacity = 0.1;
 			if (slot == this.currentSlot && player == 1 && this.currentRow == 0) {
 				if (this.mode == "select") {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/enoteyellow.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/enoteyellow.jpg",ctx);
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/enotegreen.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/enotegreen.jpg",ctx);
 				}
 			} else {
 				if (slot == this.currentSlot && player == 2 && this.currentRow == 2) {
 					if (this.mode == "select") {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/enoteyellow.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/enoteyellow.jpg",ctx);
 					} else {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/enotegreen.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/enotegreen.jpg",ctx);
 					}
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/enote.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/enote.jpg",ctx);
 				}
 			}
 		}
@@ -1257,19 +1258,19 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			var opacity = 0.1;
 			if (slot == this.currentSlot && player == 1 && this.currentRow == 0) {
 				if (this.mode == "select") {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/fnoteyellow.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/fnoteyellow.jpg",ctx);
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/fnotegreen.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/fnotegreen.jpg",ctx);
 				}
 			} else {
 				if (slot == this.currentSlot && player == 2 && this.currentRow == 2) {
 					if (this.mode == "select") {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/fnoteyellow.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/fnoteyellow.jpg",ctx);
 					} else {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/fnotegreen.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/fnotegreen.jpg",ctx);
 					}
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/fnote.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/fnote.jpg",ctx);
 				}
 			}
 		}
@@ -1281,19 +1282,19 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			var opacity = 0.1;
 			if (slot == this.currentSlot && player == 1 && this.currentRow == 0) {
 				if (this.mode == "select") {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/gnoteyellow.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/gnoteyellow.jpg",ctx);
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/gnotegreen.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/gnotegreen.jpg",ctx);
 				}
 			} else {
 				if (slot == this.currentSlot && player == 2 && this.currentRow == 2) {
 					if (this.mode == "select") {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/gnoteyellow.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/gnoteyellow.jpg",ctx);
 					} else {
-						this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/gnotegreen.jpg",ctx);
+						this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/gnotegreen.jpg",ctx);
 					}
 				} else {
-					this.drawImage(25 + 150*slot,25 + 190*(player-1),150,150,opacity,"images/gnote.jpg",ctx);
+					this.drawImage(25 + 150*slot,35 + 190*(player-1),150,150,opacity,"images/gnote.jpg",ctx);
 				}
 			}
 		}
