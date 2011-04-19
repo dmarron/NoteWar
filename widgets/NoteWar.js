@@ -1,5 +1,5 @@
 /**
-* Note War - a 2 player game.  Programmed by David Marron
+* Note War - a 2 player competitive puzzle game.  Programmed by David Marron
  */
 dojo.provide('myapp.NoteWar');
 dojo.require('dijit._Widget');
