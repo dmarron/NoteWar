@@ -1305,10 +1305,22 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 		ctx.fillRect(0,0,noteCanvas.width,noteCanvas.height);
 		ctx.fillStyle = "#000";
 		ctx.save();
-		ctx.font = "20pt Arial";
-		ctx.fillText("Tutorial",30,30);
-		ctx.fillText("Press Escape to return to the menu",30,60);
-		ctx.fillText("The goal of Note Wars is to arrange your notes in an ascending scale (C,D,E,F,G) before your opponent does.",30,90);
+		ctx.font = "18pt Arial";
+		ctx.fillText("Each player starts with a descending scale of notes from G to C.",30,30);
+		this.drawImage(25 + 120*0,35,120,120,1,"images/gnote.jpg",ctx);
+		this.drawImage(25 + 120*1,35,120,120,1,"images/fnote.jpg",ctx);
+		this.drawImage(25 + 120*2,35,120,120,1,"images/enote.jpg",ctx);
+		this.drawImage(25 + 120*3,35,120,120,1,"images/dnote.jpg",ctx);
+		this.drawImage(25 + 120*4,35,120,120,1,"images/cnote.jpg",ctx);
+		ctx.fillText("To win the game, you must rearrange your notes in an ascending",30,175); 
+		ctx.fillText("scale (C,D,E,F,G) before your opponent does.  The ascending",30,205);
+		ctx.fillText("scale can be in any order.  For example, F,G,C,D,E will win.",30,235);
+		this.drawImage(25 + 120*0,240,120,120,1,"images/fnote.jpg",ctx);
+		this.drawImage(25 + 120*1,240,120,120,1,"images/gnote.jpg",ctx);
+		this.drawImage(25 + 120*2,240,120,120,1,"images/cnote.jpg",ctx);
+		this.drawImage(25 + 120*3,240,120,120,1,"images/dnote.jpg",ctx);
+		this.drawImage(25 + 120*4,240,120,120,1,"images/enote.jpg",ctx);
+		ctx.fillText("Press Enter to continue or Escape to return to the menu",30,380);
 		ctx.restore();
 	},
 	drawIntroPage: function(event) {
