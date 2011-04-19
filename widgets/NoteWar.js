@@ -114,6 +114,8 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 					}
 					//todo: read word
 					this.drawIntroPage();
+				} else if (this.mode == "tutorial") {
+					
 				} else {
 					if (this.select == "note") {
 						if (this.mode == "change") {
@@ -183,6 +185,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 					}
 					//todo: read word
 					this.drawIntroPage();
+				} else if (this.mode == "tutorial") {
 				} else {
 					if (this.select == "note") {
 						if (this.mode == "change") {
@@ -243,6 +246,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 					}
 				}
 			} else if (e.keyCode == 13) {
+				//enter pressed
 				if (this.mode == "intro") {
 					if (this.currentRow == 0) {
 						this.drawTutorial();
@@ -261,6 +265,9 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 						this.currentRow = 1;
 						this.updateCanvas();
 					}
+				} else if (this.mode == "tutorial") {
+					this.mode = "intro";
+					this.drawIntroPage();
 				} else if (this.select == "1" || this.select == "2") {
 					//new game
 					this.playerOneNotes = new Array(4,3,2,1,0);
@@ -373,7 +380,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 				}
 			} else if (e.keyCode == 27) {
 				//escape pressed
-				if (this.select == "1" || this.select == "2") {
+				if (this.select == "1" || this.select == "2" || this.mode == "tutorial") {
 					//reset all values and go back to menu
 					this.playerOneNotes = new Array(4,3,2,1,0);
 					this.playerTwoNotes = new Array(4,3,2,1,0);
@@ -1289,7 +1296,16 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 		}
 	},
 	drawTutorial: function(event) {
-	
+		this.mode = "tutorial";
+		var ctx = noteCanvas.getContext("2d");
+		ctx.fillStyle = "#fff";
+		ctx.fillRect(0,0,noteCanvas.width,noteCanvas.height);
+		ctx.fillStyle = "#000";
+		ctx.save();
+		ctx.font = "20pt Arial";
+		ctx.fillText("Tutorial",30,30);
+		ctx.fillText("Press Enter to return to the menu",30,60);
+		ctx.restore();
 	},
 	drawIntroPage: function(event) {
 		this.mode = "intro";
