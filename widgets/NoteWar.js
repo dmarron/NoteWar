@@ -516,6 +516,9 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			}
 			if (checkWin) {
 				this.select = "1";
+				if (this.gameMode == "practice") {
+					this.turn = 1;
+				}
 			}
 		} else if (this.turn == 1) {
 			for (i = 0; i < this.playerTwoNotes.length; i++) {
@@ -1305,6 +1308,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 		ctx.font = "20pt Arial";
 		ctx.fillText("Tutorial",30,30);
 		ctx.fillText("Press Escape to return to the menu",30,60);
+		ctx.fillText("The goal of Note Wars is to arrange your notes in an ascending scale (C,D,E,F,G) before your opponent does.",30,90);
 		ctx.restore();
 	},
 	drawIntroPage: function(event) {
