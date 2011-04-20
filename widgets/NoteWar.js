@@ -49,6 +49,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 		this.animating = false;
 		this.animateEndOfTurn = false;
 		this.displayGhostNotes = false;
+		this.tutorialPage = 1;
     },
 	_onClick: function(e) {
 		
@@ -266,8 +267,8 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 						this.updateCanvas();
 					}
 				} else if (this.mode == "tutorial") {
-					this.mode = "intro";
-					this.drawIntroPage();
+					this.tutorialPage ++;
+					this.drawTutorial();
 				} else if (this.select == "1" || this.select == "2") {
 					//new game
 					this.playerOneNotes = new Array(4,3,2,1,0);
@@ -393,6 +394,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 					this.previousValue = 0;
 					this.nonZeroCount = 0;
 					this.numberOfMoves = 0;
+					this.tutorialPage = 1;
 					this.drawIntroPage();
 				} else if (this.mode == "change") {
 					this.mode = "select";
@@ -1307,21 +1309,78 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 		ctx.fillStyle = "#000";
 		ctx.save();
 		ctx.font = "18pt Arial";
-		ctx.fillText("Each player starts with a descending scale of notes from G to C.",30,30);
-		this.drawImage(25 + 120*0,35,120,120,1,"images/gnote.jpg",ctx);
-		this.drawImage(25 + 120*1,35,120,120,1,"images/fnote.jpg",ctx);
-		this.drawImage(25 + 120*2,35,120,120,1,"images/enote.jpg",ctx);
-		this.drawImage(25 + 120*3,35,120,120,1,"images/dnote.jpg",ctx);
-		this.drawImage(25 + 120*4,35,120,120,1,"images/cnote.jpg",ctx);
-		ctx.fillText("To win the game, you must rearrange your notes in an ascending",30,175); 
-		ctx.fillText("scale (C,D,E,F,G) before your opponent does.  The ascending",30,205);
-		ctx.fillText("scale can be in any order.  For example, F,G,C,D,E will win.",30,235);
-		this.drawImage(25 + 120*0,240,120,120,1,"images/fnote.jpg",ctx);
-		this.drawImage(25 + 120*1,240,120,120,1,"images/gnote.jpg",ctx);
-		this.drawImage(25 + 120*2,240,120,120,1,"images/cnote.jpg",ctx);
-		this.drawImage(25 + 120*3,240,120,120,1,"images/dnote.jpg",ctx);
-		this.drawImage(25 + 120*4,240,120,120,1,"images/enote.jpg",ctx);
-		ctx.fillText("Press Enter to continue or Escape to return to the menu",30,380);
+		if (this.tutorialPage == 1) {
+			ctx.fillText("Each player starts with a descending scale of notes from G to C.",30,30);
+			this.drawImage(25 + 120*0,35,120,120,1,"images/gnote.jpg",ctx);
+			this.drawImage(25 + 120*1,35,120,120,1,"images/fnote.jpg",ctx);
+			this.drawImage(25 + 120*2,35,120,120,1,"images/enote.jpg",ctx);
+			this.drawImage(25 + 120*3,35,120,120,1,"images/dnote.jpg",ctx);
+			this.drawImage(25 + 120*4,35,120,120,1,"images/cnote.jpg",ctx);
+			ctx.fillText("To win the game, you must rearrange your notes in an ascending",30,175); 
+			ctx.fillText("scale (C,D,E,F,G) before your opponent does.  The ascending",30,205);
+			ctx.fillText("scale can be in any order.  For example, F,G,C,D,E will win.",30,235);
+			this.drawImage(25 + 120*0,240,120,120,1,"images/fnote.jpg",ctx);
+			this.drawImage(25 + 120*1,240,120,120,1,"images/gnote.jpg",ctx);
+			this.drawImage(25 + 120*2,240,120,120,1,"images/cnote.jpg",ctx);
+			this.drawImage(25 + 120*3,240,120,120,1,"images/dnote.jpg",ctx);
+			this.drawImage(25 + 120*4,240,120,120,1,"images/enote.jpg",ctx);
+			ctx.fillText("Press Enter to continue or Escape to return to the menu",30,380);
+		} else if (this.tutorialPage == 2) {
+			ctx.fillText("Every turn, you play a note shifter ranging from -2 to +2",30,30);
+			ctx.fillText("in an empty slot below one of your notes.",30,60);
+			this.drawImage(25 + 120*0,65,120,120,1,"images/gnote.jpg",ctx);
+			this.drawImage(25 + 120*1,65,120,120,1,"images/fnote.jpg",ctx);
+			this.drawImage(25 + 120*2,65,120,120,1,"images/enote.jpg",ctx);
+			this.drawImage(25 + 120*3,65,120,120,1,"images/dnote.jpg",ctx);
+			this.drawImage(25 + 120*4,65,120,120,1,"images/cnote.jpg",ctx);
+			ctx.font = "14pt Arial";
+			ctx.fillText("+2",192,204);
+			ctx.strokeStyle = "#00ff00";
+			ctx.strokeRect(192,186,24,24);
+			ctx.font = "18pt Arial";
+			ctx.fillText("For example, this +2 shifter will change the F to a C (F    G    C).",30,229);
+			ctx.strokeStyle = "#000";
+			ctx.beginPath();
+			ctx.lineWidth = 2;
+			ctx.moveTo(619,222);
+			ctx.lineTo(634,222);
+			ctx.moveTo(628,216);
+			ctx.lineTo(634,222);
+			ctx.lineTo(628,228);
+			ctx.moveTo(667,222);
+			ctx.lineTo(682,222);
+			ctx.moveTo(676,216);
+			ctx.lineTo(682,222);
+			ctx.lineTo(676,228);
+			ctx.stroke();
+			ctx.lineWidth = 1;
+			ctx.fillText("After the shifter changes your note, it will move one slot to the right.",30,259);
+			this.drawImage(25 + 120*0,264,120,120,1,"images/gnote.jpg",ctx);
+			this.drawImage(25 + 120*1,264,120,120,1,"images/cnote.jpg",ctx);
+			this.drawImage(25 + 120*2,264,120,120,1,"images/enote.jpg",ctx);
+			this.drawImage(25 + 120*3,264,120,120,1,"images/dnote.jpg",ctx);
+			this.drawImage(25 + 120*4,264,120,120,1,"images/cnote.jpg",ctx);
+			ctx.font = "14pt Arial";
+			ctx.fillText("+2",312,403);
+			//ctx.strokeStyle = "#00ff00";
+			//ctx.strokeRect(312,385,24,24);
+			ctx.strokeStyle = "#000";
+			ctx.beginPath();
+			ctx.lineWidth = 2;
+			ctx.moveTo(285,397);
+			ctx.lineTo(300,397);
+			ctx.moveTo(294,391);
+			ctx.lineTo(300,397);
+			ctx.lineTo(294,403);
+			ctx.stroke();
+			ctx.lineWidth = 1;
+			ctx.font = "18pt Arial";
+			ctx.fillText("Press Enter to continue or Escape to return to the menu",30,440);
+			
+		} else {
+			ctx.fillText("The tutorial is complete.",30,30);
+			ctx.fillText("Press Escape to return to the main menu.",30,60);
+		}
 		ctx.restore();
 	},
 	drawIntroPage: function(event) {
