@@ -1363,7 +1363,11 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			this.drawImage(25 + 120*3,65,120,120,1,"images/dnote.jpg",ctx);
 			this.drawImage(25 + 120*4,65,120,120,1,"images/cnote.jpg",ctx);
 			ctx.font = "14pt Arial";
+			ctx.fillText("Slot 1",60,204);
 			ctx.fillText("+2",192,204);
+			ctx.fillText("Slot 3",302,204);
+			ctx.fillText("Slot 4",420,204);
+			ctx.fillText("Slot 5",542,204);
 			ctx.strokeStyle = "#00ff00";
 			ctx.strokeRect(192,186,24,24);
 			ctx.font = "18pt Arial";
@@ -1390,7 +1394,11 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			this.drawImage(25 + 120*3,264,120,120,1,"images/dnote.jpg",ctx);
 			this.drawImage(25 + 120*4,264,120,120,1,"images/cnote.jpg",ctx);
 			ctx.font = "14pt Arial";
+			ctx.fillText("Slot 1",60,403);
+			ctx.fillText("Slot 2",182,403);
 			ctx.fillText("+2",312,403);
+			ctx.fillText("Slot 4",420,403);
+			ctx.fillText("Slot 5",542,403);
 			//ctx.strokeStyle = "#00ff00";
 			//ctx.strokeRect(312,385,24,24);
 			ctx.strokeStyle = "#000";
@@ -1409,6 +1417,20 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 		} else {
 			ctx.fillText("The tutorial is complete.",30,30);
 			ctx.fillText("Press Escape to return to the main menu.",30,60);
+			//reset all values and go back to menu
+			this.playerOneNotes = new Array(4,3,2,1,0);
+			this.playerTwoNotes = new Array(4,3,2,1,0);
+			this.blocks = new Array(0,0,0,0,0);
+			this.turn = 1;
+			this.select = "note";
+			this.mode = "intro";
+			this.currentSlot = 0;
+			this.currentRow = 0;
+			this.previousValue = 0;
+			this.nonZeroCount = 0;
+			this.numberOfMoves = 0;
+			this.tutorialPage = 1;
+			this.drawIntroPage();
 		}
 		ctx.restore();
 	},
