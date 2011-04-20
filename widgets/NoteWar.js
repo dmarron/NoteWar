@@ -1526,8 +1526,8 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			ctx.strokeStyle = "#00ff00";
 			ctx.strokeRect(313,326,25,25);
 			ctx.font = "18pt Arial";
-			ctx.fillText("The transparent notes now form an ascending scale and",30,370);
-			ctx.fillText("the player will win at the end of the turn.",30,400);
+			ctx.fillText("The transparent notes now form an ascending scale.  A player",30,370);
+			ctx.fillText("can also win as soon as they change one of their notes.",30,400);
 			ctx.fillText("Press Enter to continue or Escape to return to the menu",30,430);
 		} else {
 			ctx.fillText("The tutorial is complete.",30,30);
