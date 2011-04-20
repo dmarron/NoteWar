@@ -20,6 +20,14 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 		this.connect(window,'onkeyup','_onKeyPress');
 		this.connect(window,'onkeydown','_onKeyDown');
 		this.connect(window,'onclick','_onClick');
+		dojo.connect(dojo.doc, 'onkeypress', function(event) {
+            if(event.target.size === undefined &&
+               event.target.rows === undefined &&
+               event.keyCode == dojo.keys.BACKSPACE) {
+                // prevent backspace page nav
+                event.preventDefault();
+            }
+        } );
 		this.introPage();
 	},
     postMixInProperties: function() {
@@ -414,6 +422,22 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 					this.displayGhostNotes = false;
 					this.updateCanvas();
 				}
+			} else if (e.keyCode == 8) {
+				//backspace pressed
+				//reset all values and go back to menu
+					this.playerOneNotes = new Array(4,3,2,1,0);
+					this.playerTwoNotes = new Array(4,3,2,1,0);
+					this.blocks = new Array(0,0,0,0,0);
+					this.turn = 1;
+					this.select = "note";
+					this.mode = "intro";
+					this.currentSlot = 0;
+					this.currentRow = 0;
+					this.previousValue = 0;
+					this.nonZeroCount = 0;
+					this.numberOfMoves = 0;
+					this.tutorialPage = 1;
+					this.drawIntroPage();
 			}
 		}
 	},
@@ -518,9 +542,9 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			}
 			if (checkWin) {
 				this.select = "1";
-				if (this.gameMode == "practice") {
-					this.turn = 1;
-				}
+				this.turn = 1;
+				this.mode = "change";
+				this.currentRow = 1;
 			}
 		} else if (this.turn == 1) {
 			for (i = 0; i < this.playerTwoNotes.length; i++) {
@@ -535,9 +559,14 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			}
 			if (checkWin) {
 				this.select = "2";
+				this.turn = 2;
+				this.mode = "change";
+				this.currentRow = 1;
 			}
 		}
-		this.currentSlot = 0;
+		if (!checkWin) {
+			this.currentSlot = 0;
+		}
 		if (this.gameMode == "practice" && this.turn == 2 && !checkWin) {
 			if (this.nonZeroCount == this.blocks.length) {
 				this.currentRow = 0;
@@ -927,7 +956,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			}
 		} else if (this.select == "1") {
 			if (this.gameMode == "practice") {
-				ctx.fillText("You won the game in " + this.numberOfMoves + " moves.  Press Enter to restart practice mode or Escape to go back to the main menu", 10, 30);
+				ctx.fillText("You won the game in " + this.numberOfMoves + " moves.  Press Enter to restart puzzle mode or Escape to go back to the main menu", 10, 30);
 				if (this.recordMoves == 0 || this.recordMoves > this.numberOfMoves) {
 					this.recordMoves = this.numberOfMoves;
 				}
