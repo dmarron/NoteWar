@@ -63,7 +63,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 		
 	},
 	_onKeyDown: function(e) {
-		if (e.keyCode == 16 && this.mode != "intro" && !this.animating) {
+		if (e.keyCode == 16 && this.mode != "intro" && this.mode != "tutorial" && !this.animating) {
 			//shift pressed 
 			if (!this.displayGhostNotes) {
 				this.displayGhostNotes = true;
@@ -1373,6 +1373,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			ctx.font = "18pt Arial";
 			ctx.fillText("For example, this +2 shifter will change the F to a C (F    G    C).",30,229);
 			ctx.strokeStyle = "#000";
+			//draw arrows between F,G, and C
 			ctx.beginPath();
 			ctx.lineWidth = 2;
 			ctx.moveTo(619,222);
@@ -1412,8 +1413,54 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			ctx.stroke();
 			ctx.lineWidth = 1;
 			ctx.font = "18pt Arial";
-			ctx.fillText("Press Enter to continue or Escape to return to the menu",30,440);
-			
+			ctx.fillText("Press Enter to continue or Escape to return to the menu",30,430);
+		} else if (this.tutorialPage == 3) {
+			ctx.fillText("Let's say we played a -1 shifter in slot 5 on the next turn.",30,30);
+			this.drawImage(25 + 120*0,35,120,120,1,"images/gnote.jpg",ctx);
+			this.drawImage(25 + 120*1,35,120,120,1,"images/cnote.jpg",ctx);
+			this.drawImage(25 + 120*2,35,120,120,1,"images/enote.jpg",ctx);
+			this.drawImage(25 + 120*3,35,120,120,1,"images/dnote.jpg",ctx);
+			this.drawImage(25 + 120*4,35,120,120,1,"images/cnote.jpg",ctx);
+			ctx.font = "14pt Arial";
+			ctx.fillText("Slot 1",60,174);
+			ctx.fillText("Slot 2",182,174);
+			ctx.fillText("+2",312,174);
+			ctx.fillText("Slot 4",420,174);
+			ctx.fillText("-1",559,174);
+			ctx.strokeStyle = "#00ff00";
+			ctx.strokeRect(554,156,24,24);
+			ctx.font = "18pt Arial";
+			ctx.fillText("The +2 shifter will change the E to a G and the -1 shifter will",30,205);
+			ctx.fillText("change the C to a G.  They will then move 1 slot to the right.",30,235);
+			this.drawImage(25 + 120*0,245,120,120,1,"images/gnote.jpg",ctx);
+			this.drawImage(25 + 120*1,245,120,120,1,"images/cnote.jpg",ctx);
+			this.drawImage(25 + 120*2,245,120,120,1,"images/gnote.jpg",ctx);
+			this.drawImage(25 + 120*3,245,120,120,1,"images/dnote.jpg",ctx);
+			this.drawImage(25 + 120*4,245,120,120,1,"images/gnote.jpg",ctx);
+			ctx.font = "14pt Arial";
+			ctx.fillText("-1",78,384);
+			ctx.fillText("Slot 2",182,384);
+			ctx.fillText("Slot 3",300,384);
+			ctx.fillText("+2",432,384);
+			ctx.fillText("Slot 5",545,384);
+			ctx.strokeStyle = "#000";
+			ctx.beginPath();
+			ctx.lineWidth = 2;
+			ctx.moveTo(50,377);
+			ctx.lineTo(65,377);
+			ctx.moveTo(59,371);
+			ctx.lineTo(65,377);
+			ctx.lineTo(59,383);
+			ctx.moveTo(405,377);
+			ctx.lineTo(420,377);
+			ctx.moveTo(414,371);
+			ctx.lineTo(420,377);
+			ctx.lineTo(414,383);
+			ctx.stroke();
+			ctx.lineWidth = 1;
+			ctx.font = "18pt Arial";
+			//ctx.fillText("The -1 shifter will loop back around to slot 1.",30,410);
+			ctx.fillText("Press Enter to continue or Escape to return to the menu",30,410);
 		} else {
 			ctx.fillText("The tutorial is complete.",30,30);
 			ctx.fillText("Press Escape to return to the main menu.",30,60);
