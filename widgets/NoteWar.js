@@ -1529,6 +1529,41 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			ctx.fillText("The transparent notes now form an ascending scale.  A player",30,370);
 			ctx.fillText("can also win as soon as they change one of their notes.",30,400);
 			ctx.fillText("Press Enter to continue or Escape to return to the menu",30,430);
+		} else if (this.tutorialPage == 6) {
+			ctx.fillText("In a two-player game, note shifters will only change the notes of the",30,30);
+			ctx.fillText("player whose turn it is.  The other player's notes will be grayed out.",30,60);
+			this.drawImage(25 + 120*0,65,120,120,0.5,"images/gnote.jpg",ctx);
+			this.drawImage(25 + 120*1,65,120,120,0.5,"images/cnote.jpg",ctx);
+			this.drawImage(25 + 120*2,65,120,120,0.5,"images/dnote.jpg",ctx);
+			this.drawImage(25 + 120*3,65,120,120,0.5,"images/cnote.jpg",ctx);
+			this.drawImage(25 + 120*4,65,120,120,0.5,"images/fnote.jpg",ctx);
+			ctx.font = "14pt Arial";
+			ctx.fillText("-1",75,204);
+			ctx.fillText("+2",192,204);
+			ctx.fillText("-1",317,204);
+			ctx.fillText("-2",436,204);
+			ctx.fillText("+1",555,204);
+			//ctx.strokeStyle = "#00ff00";
+			//ctx.strokeRect(191,186,25,25);
+			this.drawImage(25 + 120*0,209,120,120,1,"images/fnoteyellow.jpg",ctx);
+			this.drawImage(25 + 120*1,209,120,120,1,"images/fnote.jpg",ctx);
+			this.drawImage(25 + 120*2,209,120,120,1,"images/enote.jpg",ctx);
+			this.drawImage(25 + 120*3,209,120,120,1,"images/gnote.jpg",ctx);
+			this.drawImage(25 + 120*4,209,120,120,1,"images/cnote.jpg",ctx);
+			ctx.font = "18pt Arial";
+			ctx.fillText("In the above picture, it is player 2's turn.  Unless player 2 can win this",30,350);
+			ctx.fillText("turn, player 1 can win next turn by changing the C in slot 4 to an E.",30,380);
+			ctx.fillText("Press Enter to continue or Escape to return to the menu",30,410);
+		} else if (this.tutorialPage == 7) {
+			ctx.fillText("Controls: Left and Right Arrow to move between slots.",30,30);
+			ctx.fillText("Up and Down Arrow to move between rows.",30,60);
+			ctx.fillText("Enter to start changing a note or a shifter",30,90);
+			ctx.fillText("Up and Down to select the value of a note or shifter.",30,120);
+			ctx.fillText("Enter to confirm the selected value",30,150);
+			ctx.fillText("Escape to cancel changing a note or shifter.",30,180);
+			ctx.fillText("Shift to show where the notes will be at the end of the turn.",30,210);
+			ctx.fillText("Backspace to quit a game and return to the main menu.",30,240);
+			ctx.fillText("The tutorial is complete.  Press Enter to return to the menu.",30,270);
 		} else {
 			ctx.fillText("The tutorial is complete.",30,30);
 			ctx.fillText("Press Escape to return to the main menu.",30,60);
