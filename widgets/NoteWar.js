@@ -1504,6 +1504,9 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 			ctx.fillText("-1",318,144);
 			ctx.fillText("-2",438,144);
 			ctx.fillText("+1",554,144);
+			ctx.strokeStyle = "#ffff00";
+			//ctx.strokeRect(313,126,25,25);
+			//ctx.strokeRect(313,126,25,25);
 			ctx.font = "18pt Arial";
 			ctx.fillText("The player can win this turn by first changing the E in slot 2",30,170);
 			ctx.fillText("to a D, then changing the -1 shifter in slot 3 to a -2.",30,200);
@@ -1596,7 +1599,7 @@ dojo.declare('myapp.NoteWar', [dijit._Widget, dijit._Templated], {
 		ctx.fillText("Note War",10,60);
 		ctx.font = "20pt Arial";
 		ctx.fillText("Tutorial",50,120);
-		ctx.fillText("Puzzle Mode (One player)",50,150);
+		ctx.fillText("Puzzle Mode",50,150);
 		ctx.fillText("Play against the computer",50,180);
 		ctx.fillText("Two player game",50,210);
 		ctx.font = "12pt Arial";
